@@ -8,7 +8,7 @@ saga-transaction-manager is a Saga model distributed transaction framework that 
 Saga = Long Live Transaction (LLT)
 - Paper
 https://www.cs.cornell.edu/andru/cs711/2002fa/reading/sagas.pdf
-![alt text](./resource/saga.png)
+![Saga pattern](./resource/saga.png)
 
 
 - Core Idea
@@ -79,7 +79,7 @@ transactionManager.execute();
 
 ---
 
-- Context
+- Orchestrator with Context
 
 For long transactions that require storing shared variables, you can use the `SagaServiceWithContext` abstract class and `TmSequentialExecutionWithContext` to orchestrate the transactions.
 

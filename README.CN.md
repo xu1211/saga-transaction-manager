@@ -8,28 +8,37 @@ saga-transaction-manager 一个Saga模式的分布式事务框架,可以简单�
 Saga = Long Live Transaction (LLT)
 - 论文
 https://www.cs.cornell.edu/andru/cs711/2002fa/reading/sagas.pdf
-![alt text](./resource/saga.png)
+![Saga pattern](./resource/saga.png)
 
 
 - 核心思想
+
 将一个长事务拆分成多个本地事务,每个本地事务都有一个与之对应的补偿事务。当一个长事务执行失败时,会沿着事务执行的相反方向执行这些补偿事务,以便回滚整个长事务。
 
 - 适用场景
+
 业务流程长、业务流程多
 参与者包含其它公司或遗留系统服务
 需要保证事务最终一致性
 
 - 实现方法
+
 有两种常见的 Saga 实现方法，即协调和编排, 本项目是Saga编排模式
+
   1. Choreography 协调
+
 每个本地事务都会发布在其他服务中触发本地事务的域事件,责任在各个 Saga 参与者之间进行分配。
 每个服务都是独立的，都有自己的业务逻辑，需要确保是否继续下一个流程。
+
   2. Orchestration 编排
+
 Saga 编排器处理所有事务，并告知参与者根据事件执行哪项操作
 实现简单
 
 # 快速开始
+
 运行示例
+
 在 `examples/serviceProxy` 目录:
 
 
@@ -71,7 +80,9 @@ transactionManager.execute();
 
 ---
 
-- 对于需要存储公共变量的长事务,可以使用 `SagaServiceWithContext` abstract 与 `TmSequentialExecutionWithContext` 编排事务
+- 带上下文的编排器
+
+对于需要存储公共变量的长事务,可以使用 `SagaServiceWithContext` abstract 与 `TmSequentialExecutionWithContext` 编排事务
 ```typescript
 import { SagaServiceWithContext } from 'saga-transaction-manager';
 
