@@ -36,6 +36,11 @@ The Saga orchestrator handles all transactions and instructs the participants to
 Simpler implementation
 
 # Quick Start
+
+```sh
+npm i saga-transaction-manager
+```
+
 Run the example
 
 From the `examples/serviceProxy` directory:

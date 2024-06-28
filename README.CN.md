@@ -37,6 +37,10 @@ Saga 编排器处理所有事务，并告知参与者根据事件执行哪项操
 
 # 快速开始
 
+```sh
+npm i saga-transaction-manager
+```
+
 运行示例
 
 在 `examples/serviceProxy` 目录:
