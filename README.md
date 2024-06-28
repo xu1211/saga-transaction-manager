@@ -29,6 +29,7 @@ There are two common Saga implementation methods: Choreography and Orchestration
 
 Each local transaction publishes domain events in other services to trigger local transactions in those services. The responsibility is distributed among the Saga participants.
 Each service is independent and has its own business logic, and needs to ensure whether to continue the next process.
+
   2. Orchestration
 
 The Saga orchestrator handles all transactions and instructs the participants to perform the appropriate operations based on the events.
