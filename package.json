@@ -17,6 +17,11 @@
     "manager"
   ],
   "author": "yuchun",
+  "homepage": "https://github.com/xu1211/saga-transaction-manager",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xu1211/saga-transaction-manager.git"
+  },
   "license": "MIT",
   "devDependencies": {
     "@types/jest": "^29.5.12",

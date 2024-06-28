@@ -12,24 +12,31 @@ https://www.cs.cornell.edu/andru/cs711/2002fa/reading/sagas.pdf
 
 
 - Core Idea
+
 A long transaction is divided into multiple local transactions, each with a corresponding compensation transaction. When a long transaction fails, the compensation transactions are executed in reverse order to roll back the entire long transaction.
 
 - Applicable Scenarios
+
 Long business processes, complex business processes
 Participants include other companies or legacy system services
 Need to ensure eventual consistency of the transaction
 
 - Implementation Methods
+
 There are two common Saga implementation methods: Choreography and Orchestration. This project uses the Saga Orchestration pattern.
+
   1. Choreography
+
 Each local transaction publishes domain events in other services to trigger local transactions in those services. The responsibility is distributed among the Saga participants.
 Each service is independent and has its own business logic, and needs to ensure whether to continue the next process.
   2. Orchestration
+
 The Saga orchestrator handles all transactions and instructs the participants to perform the appropriate operations based on the events.
 Simpler implementation
 
 # Quick Start
 Run the example
+
 From the `examples/serviceProxy` directory:
 
 1. Implement the `ISagaTransactionService` interface for local transactions and compensation transactions.
@@ -71,7 +78,9 @@ transactionManager.execute();
 
 ---
 
-- For long transactions that require storing shared variables, you can use the `SagaServiceWithContext` abstract class and `TmSequentialExecutionWithContext` to orchestrate the transactions.
+- Context
+
+For long transactions that require storing shared variables, you can use the `SagaServiceWithContext` abstract class and `TmSequentialExecutionWithContext` to orchestrate the transactions.
 
 ```typescript
 import { SagaServiceWithContext } from 'saga-transaction-manager';
@@ -107,6 +116,7 @@ transactionManagerWithCtx.execute();
 2. No control over hanging: If the original service times out and the compensation service executes, the original service may still complete.
 
 - Implementation Suggestions
+
 Ensure that the service and compensation service are idempotent.
 
 ## todo
